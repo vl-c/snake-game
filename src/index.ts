@@ -16,21 +16,21 @@ export class Game {
     private static clock: InternalClock;
 
     private static init() {
-        const body: HTMLBodyElement = document.querySelector("body")
-        body.onkeyup = this.controller.onKeyUp
+        const body: HTMLBodyElement = document.querySelector("body");
+        body.onkeyup = this.controller.onKeyUp;
     }
 
-    static onGameTick() {
+    static onGameTick(): void {
         Game.controller.handleInput();
         Game.snake.makeTurn();
         const isAlive = Game.gr.isSnakeIsAlive(Game.snake);
         const hasAdditionalPoint = Game.gr.appleCheck(Game.snake, Game.apple);
         if (isAlive) {
             Game.score += 1;
-            Game.render.render(Game.snake.getBody(), Game.apple.getLocation(), Game.score)
+            Game.render.render(Game.snake.getBody(), Game.apple.getLocation(), Game.score);
         } else {
-            Game.clock.stop()
-            Game.render.drawGameOverScreen(Game.score)
+            Game.clock.stop();
+            Game.render.drawGameOverScreen(Game.score);
         }
         if (hasAdditionalPoint) {
             Game.score += Math.floor(Game.score/10) + 50;
@@ -38,10 +38,10 @@ export class Game {
         }
     }
 
-    static start() {
-        this.init()
-        Game.clock = new InternalClock(200, Game.onGameTick)
-        Game.clock.start()
+    static start(): void {
+        Game.init();
+        Game.clock = new InternalClock(200, Game.onGameTick);
+        Game.clock.start();
     }
 }
-Game.start()
+Game.start();

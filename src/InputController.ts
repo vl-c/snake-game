@@ -1,10 +1,10 @@
 import Snake from "./Snake";
 
 export enum Button {
-    LEFT = 37,
-    UP = 38,
-    RIGHT = 39,
-    DOWN = 40
+    LEFT = 'ArrowLeft',
+    UP = 'ArrowUp',
+    RIGHT = 'ArrowRight',
+    DOWN = 'ArrowDown'
 }
 
 export enum Direction {
@@ -16,15 +16,15 @@ export enum Direction {
 
 export class InputController {
     snake: Snake;
-    lastKey: number;
+    lastKey: string;
 
     constructor(snake: Snake) {
         this.snake = snake;
     }
 
-    onKeyUp = (e: KeyboardEvent) => { this.lastKey = e.keyCode }
+    onKeyUp = (e: KeyboardEvent): void => { this.lastKey = e.code }
 
-    handleInput() {
+    handleInput(): void {
 
         if (!this.lastKey) { return }
 

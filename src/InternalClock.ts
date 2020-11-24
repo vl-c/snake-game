@@ -1,11 +1,10 @@
 export class InternalClock {
-    private handle: number
-    private interval: number
+    private handle: number;
+    private interval: number;
+    private refreshTimer: boolean;
+    public isRunning: boolean;
 
-    public isRunning: boolean
-    private refreshTimer: boolean
-
-    private readonly handler: () => any = () => {}
+    private readonly handler: () => any = () => {};
 
     private onElapsed = () => {
         if (this.refreshTimer) {
@@ -13,28 +12,28 @@ export class InternalClock {
             this.start();
             this.refreshTimer = false;
         }
-        this.handler()
+        this.handler();
     }
 
     constructor(interval: number, handler: () => any) {
 
-        this.interval = interval
-        this.handler = handler
+        this.interval = interval;
+        this.handler = handler;
     }
 
-    public start() {
+    public start(): void {
 
-        this.isRunning = true
-        this.handle = window.setInterval(this.onElapsed.bind(this), this.interval)
+        this.isRunning = true;
+        this.handle = window.setInterval(this.onElapsed.bind(this), this.interval);
     }
 
-    public stop() {
+    public stop(): void {
 
-        this.isRunning = false
-        return window.clearInterval(this.handle)
+        this.isRunning = false;
+        window.clearInterval(this.handle);
     }
 
-    public increaseSpeed(amount: number) {
+    public increaseSpeed(amount: number): void {
 
         this.interval -= amount;
         this.refreshTimer = true;

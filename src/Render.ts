@@ -13,37 +13,30 @@ export default class Render {
         this.canvasHeight = boardHeight*scale + scale;
         this.scale = scale;
         this.rad = scale / 2;
-        let canvas = document.getElementById(canvasId) as HTMLCanvasElement;
-        let context = canvas.getContext("2d");
-        context.lineCap = 'round';
-        context.lineJoin = 'round';
-        context.strokeStyle = 'black';
-        context.lineWidth = 1;
-
-        this.canvas = canvas;
-        this.context = context;
+        this.canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+        this.context = this.canvas.getContext("2d");
     }
-    render(snakeBody: Point[], apple: Point, score: number) {
+    render(snakeBody: Point[], apple: Point, score: number): void {
         this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         snakeBody.forEach((point) => this.drawStroke(point, 'black'));
         this.drawFill(apple, 'red');
         this.writeText(`${score}`, this.canvasWidth - 4, 14, 'gray', 'right', 'bold 10px serif')
     }
-    drawStroke({x, y}: Point, color: string) {
+    drawStroke({x, y}: Point, color: string): void {
         this.context.beginPath();
         this.context.fillStyle = color;
         this.context.arc(x*this.scale+this.rad, y*this.scale+this.rad, this.rad, 0, 2*Math.PI);
         this.context.stroke();
         this.context.closePath();
     }
-    drawFill({x, y}: Point, color: string) {
+    drawFill({x, y}: Point, color: string): void {
         this.context.beginPath();
         this.context.fillStyle = color;
         this.context.arc(x*this.scale+this.rad, y*this.scale+this.rad, this.rad, 0, 2*Math.PI);
         this.context.fill();
         this.context.closePath();
     }
-    drawGameOverScreen(finalScore: number) {
+    drawGameOverScreen(finalScore: number): void {
         this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.context.beginPath();
         this.context.fillStyle = 'black';

@@ -1,7 +1,6 @@
 const paths = require('./paths')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -20,19 +19,6 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(),
-
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: paths.public,
-          to: 'assets',
-          globOptions: {
-            ignore: ['*.DS_Store'],
-          },
-        },
-      ],
-    }),
-
     new HtmlWebpackPlugin({
       title: 'Snake game',
       template: paths.src + '/templates/index.html', // template file

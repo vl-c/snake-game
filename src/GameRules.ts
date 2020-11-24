@@ -33,7 +33,7 @@ export default class GameRules {
 
     static hasBiteHimself(point: Point, arr: Point[]): boolean {
         return arr.some((i, n, arr) => {
-            return i.x === point.x && i.y === point.y && n !== arr.length - 1
+            return i.x === point.x && i.y === point.y && n !== arr.length - 1;
         });
     }
 
@@ -41,13 +41,13 @@ export default class GameRules {
         return point.x > GameRules.boardWidth || point.x < 0 || point.y > GameRules.boardHeight || point.y < 0;
     }
 
-    static isAppleEaten(snake: ISnake, apple: IApple) {
+    static isAppleEaten(snake: ISnake, apple: IApple): boolean {
         const snakeHeadLocation = snake.getHead();
         const appleLocation = apple.getLocation();
-        return snakeHeadLocation.x === appleLocation.x && snakeHeadLocation.y === appleLocation.y
+        return snakeHeadLocation.x === appleLocation.x && snakeHeadLocation.y === appleLocation.y;
     }
 
-    static appleCheck(snake: ISnake, apple: IApple) {
+    static appleCheck(snake: ISnake, apple: IApple): boolean {
         if (this.isAppleEaten(snake, apple)) {
             snake.increaseBody(apple.getLocation());
             this.replaceApple(snake, apple);
