@@ -1,7 +1,7 @@
-const paths = require('./paths')
+const paths = require('./paths');
 
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [paths.src + '/index.ts'],
@@ -12,9 +12,8 @@ module.exports = {
     publicPath: '/',
   },
 
-
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts'],
   },
 
   plugins: [
@@ -31,8 +30,8 @@ module.exports = {
       {
         test: /\.ts$/,
         include: paths.src,
-        use: 'ts-loader'
-      }
+        use: 'ts-loader',
+      },
     ],
   },
-}
+};

@@ -1,6 +1,6 @@
-const paths = require('./paths')
-const { merge } = require('webpack-merge')
-const common = require('./webpack.common.js')
+const paths = require('./paths');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -21,4 +21,4 @@ module.exports = merge(common, {
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   },
-})
+});
